@@ -10,13 +10,15 @@ let listEl = document.querySelector("ul");
 
 const emailList = [];
 for (let i = 1; i <= 10; i++) {
-    emailList.push(
         axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then(response => {
-            const email = response.data.response;
+            let email = response.data.response;
             console.log(email);
+            emailList.push(email);
         })
-    )
 }
+
+console.log(emailList);
+
 
 
 
