@@ -5,11 +5,13 @@ Attraverso l'apposita API di Boolean https://flynn.boolean.careers/exercises/api
 */
 
 let listEl = document.querySelector(".list");
+let bonusListEl = document.querySelector(".bonusList");
+let buttonEl = document.querySelector("button");
 
-const emailList = [];
+let emailList = [];
 for (let i = 1; i <= 10; i++) {
         axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then(response => {
-            email = response.data.response;
+            let email = response.data.response;
             //console.log(email);
             emailList.push(email);
             listEl.innerHTML += `<li> ${email} </li>`;
@@ -19,11 +21,20 @@ for (let i = 1; i <= 10; i++) {
 
 console.log(emailList);
 
+buttonEl.addEventListener("click", () => {
+    listEl.classList.add("d-none");
+    let bonusEmailList = [];
+    for (let i = 1; i <= 10; i++){
+        axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then(response =>{
+            let bonusEmail = response.data.response;
+            bonusEmailList.push(bonusEmail);
+            bonusListEl.innerHTML += `<li> ${bonusEmail} </li>`;
+        })
+    }
+
+})
 
 
-
-
-//
 
 
 
